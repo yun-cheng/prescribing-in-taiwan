@@ -26,10 +26,22 @@ ChartJS.register(
 );
 
 interface Props {
+  title: string;
+  xTitle: string;
+  yTitle: string;
+  xLabels: string[];
+  colorLabels: string[];
   chartData: (number | null)[][];
 }
 
-export default function Chart({ chartData }: Props) {
+export default function Chart({
+  title,
+  xTitle,
+  yTitle,
+  xLabels,
+  colorLabels,
+  chartData,
+}: Props) {
   const settings: ChartOptions<'line'> = {
     responsive: true,
     aspectRatio: 4 / 3,
@@ -51,7 +63,7 @@ export default function Chart({ chartData }: Props) {
     plugins: {
       title: {
         display: true,
-        text: 'Year 2005',
+        text: title,
         font: {
           size: 20,
           weight: 'bold',
@@ -75,7 +87,7 @@ export default function Chart({ chartData }: Props) {
           size: 18,
         },
         callbacks: {
-          title: (context) => `Age ${context[0].label}`,
+          title: (context) => `${xTitle} ${context[0].label}`,
           label(context) {
             let label = context.dataset.label || '';
             if (label) {
@@ -101,7 +113,7 @@ export default function Chart({ chartData }: Props) {
       x: {
         title: {
           display: true,
-          text: 'Age',
+          text: xTitle,
           align: 'end',
           font: {
             size: 18,
@@ -129,7 +141,7 @@ export default function Chart({ chartData }: Props) {
         suggestedMin: 0,
         title: {
           display: true,
-          text: '%',
+          text: yTitle,
           align: 'end',
           font: {
             size: 18,
@@ -158,8 +170,8 @@ export default function Chart({ chartData }: Props) {
   };
 
   const data = {
-    labels: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90],
-    datasets: ['male', 'female'].map((label, index) => ({
+    labels: xLabels,
+    datasets: colorLabels.map((label, index) => ({
       label,
       data: chartData[index],
       showLine: false,
