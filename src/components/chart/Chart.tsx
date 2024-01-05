@@ -181,7 +181,7 @@ export default function Chart({
   };
 
   return (
-    <div className="w-full max-w-lg">
+    <div className="max-w-lg bg-white">
       <Line options={settings} data={data} />
     </div>
   );
