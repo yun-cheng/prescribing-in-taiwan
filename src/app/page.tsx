@@ -1,12 +1,12 @@
 import Chart from '@/components/chart/Chart';
-import getInitChartData from '@/utils/getInitChartData';
+import getInitChartSetData from '@/utils/getInitChartSetData';
 
 export default async function Home() {
-  const chartData = await getInitChartData();
+  const chartSetData = await getInitChartSetData();
 
   return (
     <main className="flex">
-      <Chart chartData={Object.values(chartData['2005'])} />
+      <Chart chartData={Object.values(chartSetData['2005'])} />
     </main>
   );
 }
