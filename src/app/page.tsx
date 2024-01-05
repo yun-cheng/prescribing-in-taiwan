@@ -1,9 +1,13 @@
 import ChartSet from '@/components/chart/ChartSet';
+import Description from '@/components/description/Description';
 
 export default async function Home() {
   return (
-    <main>
-      <ChartSet />
-    </main>
+    <div className="bg-slate-50 py-6">
+      <main>
+        <ChartSet />
+        <Description />
+      </main>
+    </div>
   );
 }
