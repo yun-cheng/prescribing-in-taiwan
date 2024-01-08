@@ -1,5 +1,7 @@
 import JotaiDevTools from '@/components/common/JotaiDevTools';
 import NavBar from '@/components/common/NavBar';
+import theme from '@/utils/muiThemeConfig';
+import { ThemeProvider } from '@mui/material';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
 import { Provider as JotaiProvider } from 'jotai';
 import type { Metadata } from 'next';
@@ -24,10 +26,12 @@ export default function RootLayout({
         <JotaiProvider>
           <JotaiDevTools />
           <AppRouterCacheProvider>
-            <div className="bg-slate-50 pt-16">
-              <NavBar />
-              {children}
-            </div>
+            <ThemeProvider theme={theme}>
+              <div className="bg-slate-50 pt-16">
+                <NavBar />
+                {children}
+              </div>
+            </ThemeProvider>
           </AppRouterCacheProvider>
         </JotaiProvider>
       </body>
