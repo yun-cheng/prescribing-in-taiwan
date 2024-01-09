@@ -1,6 +1,10 @@
 'use client';
 
-import { chartSetDataAtom, fullChartSetDataAtom } from '@/atoms/chart';
+import {
+  chartSetDataAtom,
+  fullChartSetDataAtom,
+  maxValueAtom,
+} from '@/atoms/chart';
 import Chart from '@/components/chart/Chart';
 import { FullChartSetDataType } from '@/types/chart';
 import { useAtom } from 'jotai';
@@ -14,6 +18,7 @@ export default function ChartSet({ fullChartSetData }: Props) {
   useHydrateAtoms([[fullChartSetDataAtom, fullChartSetData]]);
 
   const [chartSetData] = useAtom(chartSetDataAtom);
+  const [maxValue] = useAtom(maxValueAtom);
 
   if (!chartSetData) {
     return null;
@@ -44,6 +49,7 @@ export default function ChartSet({ fullChartSetData }: Props) {
             ]}
             colorLabels={['male', 'female']}
             chartData={Object.values(chartSetData[year])}
+            maxValue={maxValue}
           />
         </div>
       ))}

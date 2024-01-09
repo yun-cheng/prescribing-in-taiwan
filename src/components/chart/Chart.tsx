@@ -33,6 +33,7 @@ interface Props {
   xLabels: string[];
   colorLabels: string[];
   chartData: (number | null)[][];
+  maxValue: number;
 }
 
 export default function Chart({
@@ -42,6 +43,7 @@ export default function Chart({
   xLabels,
   colorLabels,
   chartData,
+  maxValue,
 }: Props) {
   const settings: ChartOptions<'line'> = {
     responsive: true,
@@ -140,6 +142,7 @@ export default function Chart({
           x: -0.3,
         },
         suggestedMin: 0,
+        suggestedMax: maxValue,
         title: {
           display: true,
           text: yTitle,
