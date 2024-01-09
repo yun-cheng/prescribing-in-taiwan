@@ -21,8 +21,8 @@ export default function GroupCollapseList({ groupName, groupData }: Props) {
     setOpenedGroupCollapse(isOpen ? '' : groupName);
   };
 
-  const handleClickDrug = (drugId: string) => {
-    setDrug(drugId);
+  const handleClickDrug = (drug: DrugType) => {
+    setDrug(drug);
   };
 
   return (
@@ -36,8 +36,8 @@ export default function GroupCollapseList({ groupName, groupData }: Props) {
           {groupData.map((drug) => (
             <ListItemButton
               key={drug.id}
-              selected={drug.id === selectedDrug}
-              onClick={() => handleClickDrug(drug.id)}
+              selected={drug.id === selectedDrug.id}
+              onClick={() => handleClickDrug(drug)}
             >
               <ListItemText sx={{ pl: 4 }} primary={drug.label} />
             </ListItemButton>

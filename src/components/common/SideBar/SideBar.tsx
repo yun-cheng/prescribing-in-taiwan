@@ -1,6 +1,6 @@
 'use client';
 
-import { sideBarOpenAtom } from '@/atoms/sideBar';
+import { drugDataAtom, sideBarOpenAtom } from '@/atoms/sideBar';
 import { DrugData } from '@/types/drug';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import {
@@ -12,6 +12,7 @@ import {
   useTheme,
 } from '@mui/material';
 import { useAtom } from 'jotai';
+import { useHydrateAtoms } from 'jotai/utils';
 import DrugList from '../../drugList/DrugList';
 import { drawerWidth } from './constants';
 
@@ -20,6 +21,8 @@ type Props = {
 };
 
 export default function SideBar({ drugData }: Props) {
+  useHydrateAtoms([[drugDataAtom, drugData]]);
+
   const theme = useTheme();
   const lgUp = useMediaQuery(theme.breakpoints.up('lg'));
 

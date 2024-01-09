@@ -5,10 +5,10 @@ import { selectedDrugAtom } from './sideBar';
 export const fullChartSetDataAtom = atom<FullChartSetDataType | null>(null);
 
 export const chartSetDataAtom = atom<ChartSetDataType | null>((get) => {
-  if (!get(fullChartSetDataAtom) && !get(selectedDrugAtom)) {
+  if (!get(fullChartSetDataAtom)) {
     return null;
   }
-  return get(fullChartSetDataAtom)![get(selectedDrugAtom)];
+  return get(fullChartSetDataAtom)![get(selectedDrugAtom).id];
 });
 
 export const maxValueAtom = atom((get) => {

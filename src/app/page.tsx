@@ -1,3 +1,4 @@
+import ChartHeader from '@/components/chart/ChartHeader';
 import ChartSetContainer from '@/components/chart/ChartSetContainer';
 import Header from '@/components/common/Header';
 import MainContainer from '@/components/common/MainContainer';
@@ -12,6 +13,7 @@ export default async function Home() {
         <MainContainer>
           <Header />
           <div className="p-6">
+            <ChartHeader />
             <ChartSetContainer />
             <Description />
           </div>
