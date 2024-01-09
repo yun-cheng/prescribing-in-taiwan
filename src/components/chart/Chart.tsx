@@ -2,6 +2,7 @@
 
 import {
   CategoryScale,
+  ChartData,
   Chart as ChartJS,
   ChartOptions,
   Colors,
@@ -44,7 +45,7 @@ export default function Chart({
 }: Props) {
   const settings: ChartOptions<'line'> = {
     responsive: true,
-    aspectRatio: 4 / 3,
+    maintainAspectRatio: false,
     interaction: {
       mode: 'index',
       intersect: false,
@@ -169,7 +170,7 @@ export default function Chart({
     },
   };
 
-  const data = {
+  const data: ChartData<'line'> = {
     labels: xLabels,
     datasets: colorLabels.map((label, index) => ({
       label,
@@ -180,9 +181,5 @@ export default function Chart({
     })),
   };
 
-  return (
-    <div className="max-w-lg bg-white">
-      <Line options={settings} data={data} />
-    </div>
-  );
+  return <Line options={settings} data={data} className="bg-white" />;
 }

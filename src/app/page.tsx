@@ -1,4 +1,4 @@
-import ChartSet from '@/components/chart/ChartSet';
+import ChartSetContainer from '@/components/chart/ChartSetContainer';
 import Header from '@/components/common/Header';
 import Description from '@/components/description/Description';
 
@@ -7,7 +7,7 @@ export default async function Home() {
     <main>
       <Header />
       <div className="p-6">
-        <ChartSet />
+        <ChartSetContainer />
         <Description />
       </div>
     </main>
