@@ -1,12 +1,12 @@
-import getInitChartSetData from '@/utils/getInitChartSetData';
+import getFullChartSetData from '@/utils/getFullChartSetData';
 import ChartSet from './ChartSet';
 
 export default async function ChartSetContainer() {
-  const chartSetData = await getInitChartSetData();
+  const fullChartSetData = await getFullChartSetData();
 
   return (
     <div className="mx-auto max-w-screen-lg">
-      <ChartSet chartSetData={chartSetData} />
+      <ChartSet fullChartSetData={fullChartSetData} />
     </div>
   );
 }
