@@ -1,5 +1,6 @@
 'use client';
 
+import { Skeleton } from '@mui/material';
 import {
   CategoryScale,
   ChartData,
@@ -9,10 +10,12 @@ import {
   Legend,
   LineElement,
   LinearScale,
+  Plugin,
   PointElement,
   Title,
   Tooltip,
 } from 'chart.js';
+import { useState } from 'react';
 import { Line } from 'react-chartjs-2';
 
 ChartJS.register(
@@ -25,6 +28,14 @@ ChartJS.register(
   Tooltip,
   Legend,
 );
+
+interface NoDataPluginType {
+  plugins: {
+    noDataPlugin: {
+      noData: boolean;
+    };
+  };
+}
 
 interface Props {
   title: string;
@@ -45,7 +56,9 @@ export default function Chart({
   chartData,
   maxValue,
 }: Props) {
-  const settings: ChartOptions<'line'> = {
+  const [initialized, setInitialized] = useState(false);
+
+  const settings: ChartOptions<'line'> & NoDataPluginType = {
     responsive: true,
     maintainAspectRatio: false,
     interaction: {
@@ -110,6 +123,9 @@ export default function Chart({
             return label;
           },
         },
+      },
+      noDataPlugin: {
+        noData: chartData.flat().every((v) => v === null),
       },
     },
     scales: {
@@ -184,5 +200,50 @@ export default function Chart({
     })),
   };
 
-  return <Line options={settings} data={data} className="bg-white" />;
+  const noDataPlugin: Plugin<'line'> = {
+    id: 'noDataPlugin',
+    beforeInit: () => {
+      setInitialized(true);
+    },
+    afterRender: (chart, _, options) => {
+      const {
+        ctx,
+        chartArea: { top, bottom, left, right },
+      } = chart;
+      const { noData } = options;
+
+      if (noData) {
+        const centerX = (left + right) / 2;
+        const centerY = (top + bottom) / 2;
+
+        ctx.textAlign = 'center';
+        ctx.font = '18px';
+        ctx.fillStyle = '#404040';
+        ctx.fillText('Nearly no prescriptions', centerX, centerY);
+      }
+    },
+  };
+
+  return (
+    <div className="relative h-full">
+      {!initialized && (
+        <Skeleton
+          sx={{
+            height: '100%',
+            width: '100%',
+            position: 'absolute',
+            backgroundColor: '#dbdbdb',
+          }}
+          animation="wave"
+          variant="rectangular"
+        />
+      )}
+      <Line
+        className={`${initialized ? 'block' : 'hidden'} bg-white`}
+        options={settings}
+        data={data}
+        plugins={[noDataPlugin]}
+      />
+    </div>
+  );
 }

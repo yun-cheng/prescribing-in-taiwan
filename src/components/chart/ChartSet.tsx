@@ -29,7 +29,7 @@ export default function ChartSet({ fullChartSetData }: Props) {
       {Object.keys(chartSetData).map((year) => (
         <div
           key={year}
-          className="mx-auto aspect-[4/3] min-h-80 w-full max-w-lg pt-6 @4xl:w-1/2 @4xl:pl-6"
+          className="mx-auto aspect-[4/3] h-full min-h-80 w-full max-w-lg pt-6 @4xl:w-1/2 @4xl:pl-6"
         >
           <Chart
             title={`Year ${year}`}
