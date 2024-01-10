@@ -24,7 +24,8 @@
     "openai": "^4.24.2",
     "react": "^18",
     "react-chartjs-2": "^5.2.0",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-markdown": "^9.0.1"
   },
   "devDependencies": {
     "@swc-jotai/debug-label": "^0.1.0",
