@@ -4,6 +4,7 @@ import { promptAtom } from '@/atoms/description';
 import { useCompletion } from 'ai/react';
 import { useAtom } from 'jotai';
 import { useEffect } from 'react';
+import Markdown from 'react-markdown';
 
 function Description() {
   const { completion, complete, stop, isLoading } = useCompletion({
@@ -47,7 +48,9 @@ function Description() {
       </p>
       <hr className="my-4" />
       <h3 className="text-lg">AI Generated Description</h3>
-      {completion}
+      <Markdown className="prose prose-neutral max-w-none text-neutral-500 marker:text-neutral-500 prose-strong:text-neutral-500">
+        {completion}
+      </Markdown>
     </div>
   );
 }
