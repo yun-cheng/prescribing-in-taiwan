@@ -16,10 +16,12 @@
     "@mui/material": "^5.15.3",
     "@mui/material-nextjs": "^5.15.3",
     "@tailwindcss/container-queries": "^0.1.1",
+    "ai": "^2.2.31",
     "chart.js": "^4.4.1",
     "jotai": "^2.6.1",
     "jotai-devtools": "^0.7.1",
     "next": "14.0.4",
+    "openai": "^4.24.2",
     "react": "^18",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18"
