@@ -3,18 +3,11 @@
 import { drugDataAtom, sideBarOpenAtom } from '@/atoms/sideBar';
 import { DrugData } from '@/types/drug';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import {
-  Divider,
-  Drawer,
-  IconButton,
-  Toolbar,
-  useMediaQuery,
-  useTheme,
-} from '@mui/material';
+import { Divider, IconButton, Toolbar } from '@mui/material';
 import { useAtom } from 'jotai';
 import { useHydrateAtoms } from 'jotai/utils';
 import DrugList from '../../drugList/DrugList';
-import { drawerWidth } from './constants';
+import ResponsiveDrawer from './ResponsiveDrawer';
 
 type Props = {
   drugData: DrugData;
@@ -23,9 +16,6 @@ type Props = {
 export default function SideBar({ drugData }: Props) {
   useHydrateAtoms([[drugDataAtom, drugData]]);
 
-  const theme = useTheme();
-  const lgUp = useMediaQuery(theme.breakpoints.up('lg'));
-
   const [sideBarOpen, setSideBarOpen] = useAtom(sideBarOpenAtom);
 
   const handleCloseSideBar = () => {
@@ -33,23 +23,7 @@ export default function SideBar({ drugData }: Props) {
   };
 
   return (
-    <Drawer
-      open={sideBarOpen}
-      variant={lgUp ? 'persistent' : 'temporary'}
-      onClose={handleCloseSideBar}
-      ModalProps={{
-        keepMounted: !lgUp,
-      }}
-      sx={{
-        width: drawerWidth,
-        flexShrink: { lg: 0 },
-        '& .MuiDrawer-paper': {
-          boxSizing: 'border-box',
-          width: drawerWidth,
-          backgroundColor: '#f8fafc',
-        },
-      }}
-    >
+    <ResponsiveDrawer open={sideBarOpen} onClose={handleCloseSideBar}>
       <Toolbar
         sx={{
           justifyContent: 'flex-end',
@@ -63,6 +37,6 @@ export default function SideBar({ drugData }: Props) {
       <div className="h-full">
         <DrugList drugData={drugData} />
       </div>
-    </Drawer>
+    </ResponsiveDrawer>
   );
 }

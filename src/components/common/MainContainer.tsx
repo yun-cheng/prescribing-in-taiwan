@@ -1,9 +1,8 @@
 'use client';
 
 import { sideBarOpenAtom } from '@/atoms/sideBar';
-import { useMediaQuery, useTheme } from '@mui/material';
+import { useTheme } from '@mui/material';
 import { useAtom } from 'jotai';
-import { drawerWidth } from './SideBar/constants';
 
 type Props = {
   children: React.ReactNode;
@@ -11,11 +10,8 @@ type Props = {
 
 export default function MainContainer({ children }: Props) {
   const theme = useTheme();
-  const lgUp = useMediaQuery(theme.breakpoints.up('lg'));
 
   const [sideBarOpen] = useAtom(sideBarOpenAtom);
-
-  const marginLeft = sideBarOpen || !lgUp ? 0 : -drawerWidth;
 
   const transitionOpen = theme.transitions.create('margin', {
     easing: theme.transitions.easing.easeOut,
@@ -28,7 +24,10 @@ export default function MainContainer({ children }: Props) {
   const transition = sideBarOpen ? transitionOpen : transitionClose;
 
   return (
-    <div className="flex-grow" style={{ marginLeft, transition }}>
+    <div
+      className={`flex-grow ${sideBarOpen ? '' : 'lg:-ml-[320px]'}`}
+      style={{ transition }}
+    >
       {children}
     </div>
   );
