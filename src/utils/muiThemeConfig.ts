@@ -29,6 +29,13 @@ const theme = createTheme({
       '2xl': 1536,
     },
   },
+  components: {
+    MuiUseMediaQuery: {
+      defaultProps: {
+        noSsr: true,
+      },
+    },
+  },
 });
 
 export default theme;
