@@ -1,8 +1,19 @@
-import { openedGroupCollapseAtom, selectedDrugAtom } from '@/atoms/sideBar';
+import {
+  openedGroupCollapseAtom,
+  selectedDrugAtom,
+  sideBarOpenAtom,
+} from '@/atoms/sideBar';
 import { DrugType } from '@/types/drug';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
-import { Collapse, List, ListItemButton, ListItemText } from '@mui/material';
-import { useAtom } from 'jotai';
+import {
+  Collapse,
+  List,
+  ListItemButton,
+  ListItemText,
+  useMediaQuery,
+  useTheme,
+} from '@mui/material';
+import { useAtom, useSetAtom } from 'jotai';
 
 type Props = {
   groupName: string;
@@ -10,10 +21,15 @@ type Props = {
 };
 
 export default function GroupCollapseList({ groupName, groupData }: Props) {
+  const theme = useTheme();
+  const lgUp = useMediaQuery(theme.breakpoints.up('lg'));
+
   const [openedGroupCollapse, setOpenedGroupCollapse] = useAtom(
     openedGroupCollapseAtom,
   );
   const [selectedDrug, setDrug] = useAtom(selectedDrugAtom);
+
+  const setSideBarOpen = useSetAtom(sideBarOpenAtom);
 
   const isOpen = openedGroupCollapse === groupName;
 
@@ -23,6 +39,10 @@ export default function GroupCollapseList({ groupName, groupData }: Props) {
 
   const handleClickDrug = (drug: DrugType) => {
     setDrug(drug);
+
+    if (!lgUp) {
+      setSideBarOpen(false);
+    }
   };
 
   return (
