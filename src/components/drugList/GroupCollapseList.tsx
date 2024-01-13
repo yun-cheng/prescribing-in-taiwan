@@ -3,7 +3,7 @@ import {
   selectedDrugAtom,
   sideBarOpenAtom,
 } from '@/atoms/sideBar';
-import { DrugType } from '@/types/drug';
+import { Drug } from '@/types/drug';
 import { ExpandLess, ExpandMore } from '@mui/icons-material';
 import {
   Collapse,
@@ -17,7 +17,7 @@ import { useAtom, useSetAtom } from 'jotai';
 
 type Props = {
   groupName: string;
-  groupData: DrugType[];
+  groupData: Drug[];
 };
 
 export default function GroupCollapseList({ groupName, groupData }: Props) {
@@ -37,7 +37,7 @@ export default function GroupCollapseList({ groupName, groupData }: Props) {
     setOpenedGroupCollapse(isOpen ? '' : groupName);
   };
 
-  const handleClickDrug = (drug: DrugType) => {
+  const handleClickDrug = (drug: Drug) => {
     setDrug(drug);
 
     if (!lgUp) {

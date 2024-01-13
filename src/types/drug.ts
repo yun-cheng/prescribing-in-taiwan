@@ -1,9 +1,9 @@
-export type DrugType = {
+export type Drug = {
   id: string;
   label: string;
   note: string;
 };
 
-export type DrugData = {
-  [group: string]: DrugType[];
+export type DrugGroups = {
+  [group: string]: Drug[];
 };

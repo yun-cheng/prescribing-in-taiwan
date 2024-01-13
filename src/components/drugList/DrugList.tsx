@@ -1,21 +1,21 @@
 'use client';
 
-import { DrugData } from '@/types/drug';
+import { DrugGroups } from '@/types/drug';
 import { List } from '@mui/material';
 import GroupCollapseList from './GroupCollapseList';
 
 type Props = {
-  drugData: DrugData;
+  drugGroups: DrugGroups;
 };
 
-export default function DrugList({ drugData }: Props) {
+export default function DrugList({ drugGroups }: Props) {
   return (
     <List component="div" disablePadding>
-      {Object.keys(drugData).map((group) => (
+      {Object.keys(drugGroups).map((group) => (
         <GroupCollapseList
           key={group}
           groupName={group}
-          groupData={drugData[group]}
+          groupData={drugGroups[group]}
         />
       ))}
     </List>
