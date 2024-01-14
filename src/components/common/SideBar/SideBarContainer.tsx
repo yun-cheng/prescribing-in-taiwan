@@ -1,8 +1,10 @@
-import getDrugs from '@/utils/getDrugs';
+import drugMapToDrugGroups from '@/utils/drugMapToDrugGroups';
+import getDrugMap from '@/utils/getDrugs';
 import SideBar from './SideBar';
 
 export default async function SideBarContainer() {
-  const drugGroups = await getDrugs();
+  const drugMap = await getDrugMap();
+  const drugGroups = drugMapToDrugGroups(drugMap);
 
-  return <SideBar drugGroups={drugGroups} />;
+  return <SideBar drugMap={drugMap} drugGroups={drugGroups} />;
 }
