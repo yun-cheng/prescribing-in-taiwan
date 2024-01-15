@@ -30,6 +30,7 @@ export default function SideBar({ drugMap, drugGroups }: Props) {
     <ResponsiveDrawer open={sideBarOpen} onClose={handleCloseSideBar}>
       <Toolbar
         sx={{
+          minHeight: 64,
           justifyContent: 'flex-end',
         }}
       >

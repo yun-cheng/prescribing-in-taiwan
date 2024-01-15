@@ -7,6 +7,8 @@ import { useAtom } from 'jotai';
 function Description() {
   const [prompt] = useAtom(promptAtom);
 
+  if (!prompt) return null;
+
   return (
     <div className="mx-auto max-w-3xl leading-7 text-neutral-500">
       <p>

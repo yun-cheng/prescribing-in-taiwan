@@ -13,6 +13,7 @@ import {
   useTheme,
 } from '@mui/material';
 import { useAtom } from 'jotai';
+import NextLink from 'next/link';
 import HideOnScroll from './HideOnScroll';
 import { drawerWidth } from './SideBar/constants';
 
@@ -48,8 +49,8 @@ export default function NavBar() {
           },
         }}
       >
-        <div className="mx-auto w-full max-w-screen-lg">
-          <Toolbar>
+        <div className="mx-auto h-full w-full max-w-screen-lg">
+          <Toolbar sx={{ height: 64 }}>
             <IconButton
               color="inherit"
               edge="start"
@@ -65,6 +66,7 @@ export default function NavBar() {
             </IconButton>
             <Link
               href="/"
+              component={NextLink}
               color="inherit"
               underline="none"
               sx={{ fontSize: '1.5rem', fontWeight: 600 }}

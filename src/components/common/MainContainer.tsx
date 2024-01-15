@@ -25,7 +25,9 @@ export default function MainContainer({ children }: Props) {
 
   return (
     <div
-      className={`flex-grow ${sideBarOpen ? '' : 'lg:-ml-[320px]'}`}
+      className={`min-h-screen flex-grow pt-16 ${
+        sideBarOpen ? '' : 'lg:-ml-[320px]'
+      }`}
       style={{ transition }}
     >
       {children}
