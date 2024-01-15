@@ -14,8 +14,9 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: '',
-  description: '',
+  title: 'Prescribing in Taiwan',
+  description:
+    'Explore drug prescribing trends in Taiwan from 2005 to 2020. Analyze data from the National Health Insurance on medication use by sex and age, visualized in detailed charts.',
 };
 
 type Props = {
