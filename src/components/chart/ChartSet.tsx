@@ -20,8 +20,6 @@ export default function ChartSet({ fullChartSetData }: Props) {
   const [chartSetData] = useAtom(chartSetDataAtom);
   const [maxValue] = useAtom(maxValueAtom);
 
-  if (!chartSetData) return null;
-
   return (
     <div className="mb-6 flex flex-wrap @container">
       {Object.keys(chartSetData).map((year) => (

@@ -6,6 +6,7 @@ import {
   sideBarOpenAtom,
 } from '@/atoms/sideBar';
 import { ExpandMore } from '@mui/icons-material';
+import { Skeleton } from '@mui/material';
 import { useAtom, useSetAtom } from 'jotai';
 import { useParams } from 'next/navigation';
 import { useEffect } from 'react';
@@ -27,19 +28,41 @@ export default function ChartHeader() {
     toggleSideBar(true);
   };
 
-  if (!drug) return null;
+  const isLoading = !drug;
 
   return (
     <div className="mx-auto mb-4 max-w-screen-lg text-center">
       <button
         type="button"
-        className="text-2xl font-semibold"
+        className="w-full text-2xl font-semibold"
         onClick={handleClickTitle}
       >
-        {drug.label}
-        <ExpandMore fontSize="inherit" />
+        {isLoading ? (
+          <Skeleton
+            width="60%"
+            animation="wave"
+            variant="rounded"
+            sx={{ marginX: 'auto' }}
+          />
+        ) : (
+          <>
+            {drug.label}
+            <ExpandMore fontSize="inherit" />
+          </>
+        )}
       </button>
-      <p className="text-lg">{drug.note}</p>
+      <p className="text-lg">
+        {isLoading ? (
+          <Skeleton
+            width="50%"
+            animation="wave"
+            variant="rounded"
+            sx={{ marginX: 'auto' }}
+          />
+        ) : (
+          drug.note
+        )}
+      </p>
     </div>
   );
 }

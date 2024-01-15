@@ -4,13 +4,24 @@ import { selectedDrugAtom } from './sideBar';
 
 export const fullChartSetDataAtom = atom<FullChartSetDataType | null>(null);
 
-export const chartSetDataAtom = atom<ChartSetDataType | null>((get) => {
+export const chartSetDataAtom = atom<ChartSetDataType>((get) => {
   const data = get(fullChartSetDataAtom);
   const drug = get(selectedDrugAtom);
 
-  if (!data || !drug) return null;
+  if (data && drug) {
+    return data[drug.id];
+  }
 
-  return data[drug.id];
+  const emptyData = {} as ChartSetDataType;
+
+  ['2005', '2010', '2015', '2020'].forEach((year) => {
+    emptyData[year] = {
+      '1': [],
+      '2': [],
+    };
+  });
+
+  return emptyData;
 });
 
 export const maxValueAtom = atom((get) => {
