@@ -32,31 +32,30 @@ export default function ChartHeader() {
 
   return (
     <div className="mx-auto mb-4 max-w-screen-lg text-center">
-      <button
-        type="button"
-        className="w-full text-2xl font-semibold"
-        onClick={handleClickTitle}
-      >
-        {isLoading ? (
-          <Skeleton
-            width="60%"
-            animation="wave"
-            variant="rounded"
-            sx={{ marginX: 'auto' }}
-          />
-        ) : (
-          <>
-            {drug.label}
-            <ExpandMore fontSize="inherit" />
-          </>
-        )}
-      </button>
+      {isLoading ? (
+        <Skeleton
+          variant="text"
+          width="60%"
+          height="3rem"
+          animation="wave"
+          sx={{ marginX: 'auto' }}
+        />
+      ) : (
+        <button
+          type="button"
+          className="text-2xl font-semibold"
+          onClick={handleClickTitle}
+        >
+          {drug.label}
+          <ExpandMore fontSize="inherit" />
+        </button>
+      )}
       <p className="text-lg">
         {isLoading ? (
           <Skeleton
+            variant="rounded"
             width="50%"
             animation="wave"
-            variant="rounded"
             sx={{ marginX: 'auto' }}
           />
         ) : (
