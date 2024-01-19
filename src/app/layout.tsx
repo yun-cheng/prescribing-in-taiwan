@@ -2,6 +2,7 @@ import JotaiDevTools from '@/components/common/JotaiDevTools';
 import MainContainer from '@/components/common/MainContainer';
 import NavBar from '@/components/common/NavBar';
 import SideBarContainer from '@/components/common/SideBar/SideBarContainer';
+import SearchPanel from '@/components/searchPanel/SearchPanel';
 import theme from '@/utils/muiThemeConfig';
 import { ThemeProvider } from '@mui/material';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v13-appRouter';
@@ -26,11 +27,19 @@ type Props = {
 export default function RootLayout({ children }: Props) {
   return (
     <html lang="en">
+      <head>
+        <link
+          crossOrigin="anonymous"
+          href={`https://${process.env.NEXT_PUBLIC_ALGOLIA_APP_ID}-dsn.algolia.net`}
+          rel="preconnect"
+        />
+      </head>
       <body className={inter.className}>
         <JotaiProvider>
           <JotaiDevTools />
           <AppRouterCacheProvider>
             <ThemeProvider theme={theme}>
+              <SearchPanel />
               <NavBar />
               <div className="min-h-screen bg-slate-50">
                 <main>

@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@algolia/autocomplete-js": "^1.15.0",
+    "@algolia/autocomplete-theme-classic": "^1.15.0",
     "@emotion/cache": "^11.11.0",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
@@ -17,6 +19,7 @@
     "@mui/material-nextjs": "^5.15.3",
     "@tailwindcss/container-queries": "^0.1.1",
     "ai": "^2.2.31",
+    "algoliasearch": "^4.22.1",
     "chart.js": "^4.4.1",
     "jotai": "^2.6.1",
     "jotai-devtools": "^0.7.1",
