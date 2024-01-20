@@ -228,12 +228,7 @@ export default function Chart({
     <div className="relative h-full">
       {!initialized && (
         <Skeleton
-          sx={{
-            height: '100%',
-            width: '100%',
-            position: 'absolute',
-            backgroundColor: '#dbdbdb',
-          }}
+          className="absolute h-full w-full bg-[#dbdbdb]"
           animation="wave"
           variant="rectangular"
         />

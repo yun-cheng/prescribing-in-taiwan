@@ -28,12 +28,7 @@ export default function SideBar({ drugMap, drugGroups }: Props) {
 
   return (
     <ResponsiveDrawer open={sideBarOpen} onClose={handleCloseSideBar}>
-      <Toolbar
-        sx={{
-          minHeight: 64,
-          justifyContent: 'flex-end',
-        }}
-      >
+      <Toolbar className="min-h-16 justify-end">
         <IconButton onClick={handleCloseSideBar}>
           <ChevronLeftIcon />
         </IconButton>

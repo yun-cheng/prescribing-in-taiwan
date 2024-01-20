@@ -42,11 +42,11 @@ export default function SearchPanel() {
     <Autocomplete<Drug>
       placeholder="Search ATC Drug Groups"
       classNames={{
-        form: '!rounded-lg !border-slate-500 focus-within:!ring-1 focus-within:!ring-slate-900/30',
+        form: 'rounded-lg border-slate-500 focus-within:ring-1 focus-within:ring-slate-900/30',
         detachedSearchButtonPlaceholder: 'text-xl',
-        detachedSearchButtonIcon: '!text-slate-600',
-        submitButton: '!text-slate-100',
-        item: '!p-0',
+        detachedSearchButtonIcon: 'text-slate-600',
+        submitButton: 'text-slate-100',
+        item: 'p-0',
       }}
       navigator={{
         navigate({ item }) {

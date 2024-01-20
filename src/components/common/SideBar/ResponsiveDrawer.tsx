@@ -1,7 +1,6 @@
 'use client';
 
 import { Drawer, DrawerProps, useMediaQuery, useTheme } from '@mui/material';
-import { drawerWidth } from './constants';
 
 export default function ResponsiveDrawer({
   children,
@@ -18,14 +17,9 @@ export default function ResponsiveDrawer({
           keepMounted: true,
           disableScrollLock: lgUp,
         }}
-        sx={{
-          display: { xs: 'block', lg: 'none' },
-          width: drawerWidth,
-          '& .MuiDrawer-paper': {
-            boxSizing: 'border-box',
-            width: drawerWidth,
-            backgroundColor: '#f8fafc',
-          },
+        className="w-80 lg:hidden"
+        PaperProps={{
+          className: 'box-border w-80 bg-slate-50',
         }}
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...otherProps}
@@ -34,14 +28,9 @@ export default function ResponsiveDrawer({
       </Drawer>
       <Drawer
         variant="persistent"
-        sx={{
-          display: { xs: 'none', lg: 'block' },
-          width: drawerWidth,
-          '& .MuiDrawer-paper': {
-            boxSizing: 'border-box',
-            width: drawerWidth,
-            backgroundColor: '#f8fafc',
-          },
+        className="hidden w-80 lg:block"
+        PaperProps={{
+          className: 'box-border w-80 bg-slate-50',
         }}
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...otherProps}

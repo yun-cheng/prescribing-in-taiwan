@@ -62,7 +62,7 @@ export default function GroupCollapseList({ groupName, groupData }: Props) {
               selected={drug.id === selectedDrugId}
               onClick={() => handleSelectDrug(drug.id)}
             >
-              <ListItemText sx={{ pl: 4 }} primary={drug.label} />
+              <ListItemText className="pl-4" primary={drug.label} />
             </ListItemButton>
           ))}
         </List>

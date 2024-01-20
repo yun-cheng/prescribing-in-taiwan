@@ -18,7 +18,6 @@ import {
 import { useAtom, useSetAtom } from 'jotai';
 import NextLink from 'next/link';
 import HideOnScroll from './HideOnScroll';
-import { drawerWidth } from './SideBar/constants';
 
 export default function NavBar() {
   const [isDrugPage] = useAtom(isDrugPageAtom);
@@ -50,27 +49,20 @@ export default function NavBar() {
   return (
     <HideOnScroll disable={mdUp}>
       <AppBar
+        className={`bg-slate-600 ${
+          sideBarOpen ? 'lg:ml-80 lg:w-[calc(100%-20rem)]' : 'lg:ml-0 lg:w-full'
+        }`}
         sx={{
-          backgroundColor: '#475569',
           transition,
-          [theme.breakpoints.up('lg')]: {
-            marginLeft: sideBarOpen ? drawerWidth : 0,
-            width: sideBarOpen ? `calc(100% - ${drawerWidth}px)` : '100%',
-          },
         }}
       >
         <div className="mx-auto h-full w-full max-w-screen-lg @container">
-          <Toolbar sx={{ height: 64 }}>
+          <Toolbar className="h-16">
             <IconButton
               color="inherit"
               edge="start"
               onClick={handleClickMenu}
-              sx={{
-                mr: 2,
-                display: {
-                  lg: sideBarOpen ? 'none' : 'block',
-                },
-              }}
+              className={`mr-4 ${sideBarOpen ? 'lg:hidden' : 'lg:block'}`}
             >
               <MenuIcon />
             </IconButton>
@@ -79,7 +71,7 @@ export default function NavBar() {
               component={NextLink}
               color="inherit"
               underline="none"
-              className="!text-xl !font-semibold @lg:!text-2xl"
+              className="text-xl font-semibold @lg:text-2xl"
             >
               Prescribing in Taiwan
             </Link>
@@ -104,7 +96,7 @@ export default function NavBar() {
               target="_blank"
               rel="noopener noreferrer"
               color="inherit"
-              className="!text-lg"
+              className="text-lg"
             >
               <span className="hidden @xl:inline-block">More Info</span>
               <span className="inline-block @xl:hidden">Info</span>

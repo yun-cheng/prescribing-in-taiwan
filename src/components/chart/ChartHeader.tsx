@@ -23,7 +23,7 @@ export default function ChartHeader() {
           width="60%"
           height="3rem"
           animation="wave"
-          sx={{ marginX: 'auto' }}
+          className="mx-auto"
         />
       ) : (
         <button
@@ -41,7 +41,7 @@ export default function ChartHeader() {
             variant="rounded"
             width="50%"
             animation="wave"
-            sx={{ marginX: 'auto' }}
+            className="mx-auto"
           />
         ) : (
           drug.note
