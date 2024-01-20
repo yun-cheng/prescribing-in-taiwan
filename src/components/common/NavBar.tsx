@@ -59,7 +59,7 @@ export default function NavBar() {
           },
         }}
       >
-        <div className="mx-auto h-full w-full max-w-screen-lg">
+        <div className="mx-auto h-full w-full max-w-screen-lg @container">
           <Toolbar sx={{ height: 64 }}>
             <IconButton
               color="inherit"
@@ -79,13 +79,7 @@ export default function NavBar() {
               component={NextLink}
               color="inherit"
               underline="none"
-              sx={{
-                fontWeight: 600,
-                fontSize: {
-                  xs: '1.125rem',
-                  sm: '1.5rem',
-                },
-              }}
+              className="!text-xl !font-semibold @lg:!text-2xl"
             >
               Prescribing in Taiwan
             </Link>
@@ -97,10 +91,10 @@ export default function NavBar() {
                 onClick={openSearchPanel}
               >
                 <SearchIcon className="mr-1" />
-                <span className="mr-2 hidden md:block">
+                <span className="mr-2 hidden @3xl:block">
                   Search ATC Drug Groups
                 </span>
-                <span className="mr-3 hidden sm:block md:hidden">
+                <span className="mr-3 hidden @2xl:block @3xl:hidden">
                   Search...
                 </span>
               </button>
@@ -110,12 +104,10 @@ export default function NavBar() {
               target="_blank"
               rel="noopener noreferrer"
               color="inherit"
-              sx={{
-                fontSize: '1.125rem',
-              }}
+              className="!text-lg"
             >
-              <span className="hidden md:inline-block">More Info</span>
-              <span className="inline-block md:hidden">Info</span>
+              <span className="hidden @xl:inline-block">More Info</span>
+              <span className="inline-block @xl:hidden">Info</span>
               <OpenInNewIcon className="ml-1" />
             </Button>
           </Toolbar>
