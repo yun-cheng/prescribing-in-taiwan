@@ -59,6 +59,7 @@ export function Autocomplete<TItem extends BaseItem>(props: Props<TItem>) {
 
   useEffect(() => {
     if (searchPanelOpen) {
+      searchRef.current?.setQuery('');
       searchRef.current?.setIsOpen(searchPanelOpen);
     }
   }, [searchPanelOpen]);
