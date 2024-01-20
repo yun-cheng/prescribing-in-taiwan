@@ -9,28 +9,27 @@ import { useAtom } from 'jotai';
 import { createElement, Fragment, useEffect, useRef } from 'react';
 import { createRoot, Root } from 'react-dom/client';
 
-type ItemType = any;
+type BaseItem = Record<string, unknown>;
 
-interface AutocompleteProps
-  extends Omit<
-    AutocompleteOptions<ItemType>,
-    'container' | 'renderer' | 'render'
-  > {}
+type Props<TItem extends BaseItem> = Omit<
+  AutocompleteOptions<TItem>,
+  'container' | 'renderer' | 'render'
+>;
 
-export function Autocomplete(props: AutocompleteProps) {
+export function Autocomplete<TItem extends BaseItem>(props: Props<TItem>) {
   const [searchPanelOpen, toggleSearchPanel] = useAtom(searchPanelOpenAtom);
 
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const panelRootRef = useRef<Root | null>(null);
   const rootRef = useRef<Element | null>(null);
-  const searchRef = useRef<AutocompleteApi<any> | null>(null);
+  const searchRef = useRef<AutocompleteApi<TItem> | null>(null);
 
   useEffect(() => {
     if (!containerRef.current) {
       return undefined;
     }
 
-    searchRef.current = autocomplete({
+    searchRef.current = autocomplete<TItem>({
       openOnFocus: true,
       detachedMediaQuery: '',
       defaultActiveItemId: 0,

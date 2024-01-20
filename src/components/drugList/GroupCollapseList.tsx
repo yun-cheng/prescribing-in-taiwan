@@ -14,7 +14,7 @@ import {
   useTheme,
 } from '@mui/material';
 import { useAtom, useSetAtom } from 'jotai';
-import { usePathname, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 type Props = {
   groupName: string;
@@ -23,7 +23,6 @@ type Props = {
 
 export default function GroupCollapseList({ groupName, groupData }: Props) {
   const router = useRouter();
-  const pathname = usePathname();
 
   const theme = useTheme();
   const lgUp = useMediaQuery(theme.breakpoints.up('lg'));
@@ -31,7 +30,7 @@ export default function GroupCollapseList({ groupName, groupData }: Props) {
   const [openedGroupCollapse, setOpenedGroupCollapse] = useAtom(
     openedGroupCollapseAtom,
   );
-  const [selectedDrugId, setDrugId] = useAtom(selectedDrugIdAtom);
+  const [selectedDrugId] = useAtom(selectedDrugIdAtom);
 
   const setSideBarOpen = useSetAtom(sideBarOpenAtom);
 
@@ -41,19 +40,8 @@ export default function GroupCollapseList({ groupName, groupData }: Props) {
     setOpenedGroupCollapse(isOpen ? '' : groupName);
   };
 
-  const handleClickDrug = (drugId: string) => {
-    if (pathname.startsWith('/atc/')) {
-      setDrugId(drugId);
-
-      const newUrl = `/atc/${drugId}`;
-      window.history.replaceState(
-        { ...window.history.state, as: newUrl, url: newUrl },
-        '',
-        newUrl,
-      );
-    } else {
-      router.push(`/atc/${drugId}`);
-    }
+  const handleSelectDrug = (drugId: string) => {
+    router.push(`/atc/${drugId}`);
 
     if (!lgUp) {
       setSideBarOpen(false);
@@ -72,7 +60,7 @@ export default function GroupCollapseList({ groupName, groupData }: Props) {
             <ListItemButton
               key={drug.id}
               selected={drug.id === selectedDrugId}
-              onClick={() => handleClickDrug(drug.id)}
+              onClick={() => handleSelectDrug(drug.id)}
             >
               <ListItemText sx={{ pl: 4 }} primary={drug.label} />
             </ListItemButton>
