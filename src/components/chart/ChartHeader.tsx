@@ -1,26 +1,11 @@
 'use client';
 
-import {
-  selectedDrugAtom,
-  selectedDrugIdAtom,
-  sideBarOpenAtom,
-} from '@/atoms/sideBar';
+import { selectedDrugAtom, sideBarOpenAtom } from '@/atoms/sideBar';
 import { ExpandMore } from '@mui/icons-material';
 import { Skeleton } from '@mui/material';
 import { useAtom, useSetAtom } from 'jotai';
-import { useParams } from 'next/navigation';
-import { useEffect } from 'react';
 
 export default function ChartHeader() {
-  const { id } = useParams<{ id: string }>();
-
-  const setDrugId = useSetAtom(selectedDrugIdAtom);
-
-  useEffect(() => {
-    setDrugId(id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const [drug] = useAtom(selectedDrugAtom);
   const toggleSideBar = useSetAtom(sideBarOpenAtom);
 

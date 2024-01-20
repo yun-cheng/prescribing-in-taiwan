@@ -1,5 +1,6 @@
 'use client';
 
+import { isDrugPageAtom } from '@/atoms/pathname';
 import { searchPanelOpenAtom } from '@/atoms/search';
 import { sideBarOpenAtom } from '@/atoms/sideBar';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -16,12 +17,11 @@ import {
 } from '@mui/material';
 import { useAtom, useSetAtom } from 'jotai';
 import NextLink from 'next/link';
-import { usePathname } from 'next/navigation';
 import HideOnScroll from './HideOnScroll';
 import { drawerWidth } from './SideBar/constants';
 
 export default function NavBar() {
-  const pathname = usePathname();
+  const [isDrugPage] = useAtom(isDrugPageAtom);
 
   const theme = useTheme();
   const mdUp = useMediaQuery(theme.breakpoints.up('md'));
@@ -90,7 +90,7 @@ export default function NavBar() {
               Prescribing in Taiwan
             </Link>
             <div className="flex-grow" />
-            {pathname.startsWith('/atc/') && (
+            {isDrugPage && (
               <button
                 type="button"
                 className="mx-auto mr-2 flex items-center rounded-xl bg-white/10 p-2 text-lg text-slate-300 hover:bg-white/20"

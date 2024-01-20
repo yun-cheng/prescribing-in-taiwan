@@ -1,4 +1,5 @@
 import JotaiDevTools from '@/components/common/JotaiDevTools';
+import Listeners from '@/components/common/Listeners';
 import MainContainer from '@/components/common/MainContainer';
 import NavBar from '@/components/common/NavBar';
 import SideBarContainer from '@/components/common/SideBar/SideBarContainer';
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: Props) {
           <JotaiDevTools />
           <AppRouterCacheProvider>
             <ThemeProvider theme={theme}>
+              <Listeners />
               <SearchPanel />
               <NavBar />
               <div className="min-h-screen bg-slate-50">
