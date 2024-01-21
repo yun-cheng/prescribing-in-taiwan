@@ -10,6 +10,7 @@ import {
   List,
   ListItemButton,
   ListItemText,
+  ListSubheader,
   useMediaQuery,
   useTheme,
 } from '@mui/material';
@@ -19,9 +20,14 @@ import { useRouter } from 'next/navigation';
 type Props = {
   groupName: string;
   groupData: Drug[];
+  index: number;
 };
 
-export default function GroupCollapseList({ groupName, groupData }: Props) {
+export default function GroupCollapseList({
+  groupName,
+  groupData,
+  index,
+}: Props) {
   const router = useRouter();
 
   const theme = useTheme();
@@ -49,13 +55,25 @@ export default function GroupCollapseList({ groupName, groupData }: Props) {
   };
 
   return (
-    <div>
-      <ListItemButton onClick={handleClickGroupCollapse}>
-        <ListItemText primary={groupName} />
-        {isOpen ? <ExpandLess /> : <ExpandMore />}
-      </ListItemButton>
+    <>
+      <ListSubheader
+        className="bg-slate-50"
+        sx={{ zIndex: index + 3 }}
+        color="inherit"
+        disableGutters
+      >
+        <ListItemButton onClick={handleClickGroupCollapse}>
+          <ListItemText primary={groupName} />
+          {isOpen ? <ExpandLess /> : <ExpandMore />}
+        </ListItemButton>
+      </ListSubheader>
       <Collapse in={isOpen} timeout={300}>
-        <List component="div" disablePadding>
+        <List
+          className="bg-slate-50"
+          sx={{ zIndex: index + 2 }}
+          component="div"
+          disablePadding
+        >
           {groupData.map((drug) => (
             <ListItemButton
               key={drug.id}
@@ -67,6 +85,6 @@ export default function GroupCollapseList({ groupName, groupData }: Props) {
           ))}
         </List>
       </Collapse>
-    </div>
+    </>
   );
 }

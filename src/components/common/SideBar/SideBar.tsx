@@ -34,7 +34,7 @@ export default function SideBar({ drugMap, drugGroups }: Props) {
         </IconButton>
       </Toolbar>
       <Divider />
-      <div className="h-full">
+      <div className="h-full overflow-y-auto">
         <DrugList drugGroups={drugGroups} />
       </div>
     </ResponsiveDrawer>

@@ -11,11 +11,12 @@ type Props = {
 export default function DrugList({ drugGroups }: Props) {
   return (
     <List component="div" disablePadding>
-      {Object.keys(drugGroups).map((group) => (
+      {Object.keys(drugGroups).map((group, index) => (
         <GroupCollapseList
           key={group}
           groupName={group}
           groupData={drugGroups[group]}
+          index={index}
         />
       ))}
     </List>
