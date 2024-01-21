@@ -3,6 +3,7 @@
 import { sideBarOpenAtom } from '@/atoms/sideBar';
 import { useTheme } from '@mui/material';
 import { useAtom } from 'jotai';
+import ScrollToTop from './ScrollToTop';
 
 type Props = {
   children: React.ReactNode;
@@ -30,6 +31,7 @@ export default function MainContainer({ children }: Props) {
       }`}
       style={{ transition }}
     >
+      <ScrollToTop />
       {children}
     </div>
   );

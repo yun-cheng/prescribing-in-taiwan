@@ -4,7 +4,7 @@ import Description from '@/components/description/Description';
 
 export default async function DrugPageLayout() {
   return (
-    <div className="p-6">
+    <div className="p-6 pb-20">
       <ChartHeader />
       <ChartSetContainer />
       <Description />
