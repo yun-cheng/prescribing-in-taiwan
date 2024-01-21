@@ -19,7 +19,7 @@ export default function SearchPanel() {
   }) => {
     return (
       <button
-        className="aa-ItemLink h-full text-start"
+        className="aa-ItemLink h-full px-3 py-2 text-start"
         type="button"
         aria-label="Select"
         onClick={() => selectAutocompleteItem(item.id)}
@@ -46,7 +46,7 @@ export default function SearchPanel() {
         detachedSearchButtonPlaceholder: 'text-xl',
         detachedSearchButtonIcon: 'text-slate-600',
         submitButton: 'text-slate-100',
-        item: 'p-0',
+        item: 'p-0 rounded-md',
       }}
       navigator={{
         navigate({ item }) {
