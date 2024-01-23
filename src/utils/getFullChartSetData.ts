@@ -1,11 +1,13 @@
 'use server';
 
 import { FullChartSetDataType } from '@/types/chart';
-import { promises as fs } from 'fs';
 
 async function getFullChartSetData() {
-  const file = await fs.readFile('data/full_chart_set_data.json', 'utf8');
-  return JSON.parse(file) as FullChartSetDataType;
+  const res = await fetch(`${process.env.STORAGE_URL}/fullChartSetData.json`);
+
+  const body = await res.json();
+
+  return body as FullChartSetDataType;
 }
 
 export default getFullChartSetData;
