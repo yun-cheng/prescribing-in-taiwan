@@ -1,25 +1,13 @@
 'use client';
 
-import { drugGroupsAtom, drugMapAtom, sideBarOpenAtom } from '@/atoms/sideBar';
-import { DrugGroups, DrugMap } from '@/types/drug';
+import { sideBarOpenAtom } from '@/atoms/sideBar';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { Divider, IconButton, Toolbar } from '@mui/material';
 import { useAtom } from 'jotai';
-import { useHydrateAtoms } from 'jotai/utils';
 import DrugList from '../../drugList/DrugList';
 import ResponsiveDrawer from './ResponsiveDrawer';
 
-type Props = {
-  drugMap: DrugMap;
-  drugGroups: DrugGroups;
-};
-
-export default function SideBar({ drugMap, drugGroups }: Props) {
-  useHydrateAtoms([
-    [drugMapAtom, drugMap],
-    [drugGroupsAtom, drugGroups],
-  ]);
-
+export default function SideBar() {
   const [sideBarOpen, setSideBarOpen] = useAtom(sideBarOpenAtom);
 
   const handleCloseSideBar = () => {
@@ -35,7 +23,7 @@ export default function SideBar({ drugMap, drugGroups }: Props) {
       </Toolbar>
       <Divider />
       <div className="h-full overflow-y-auto">
-        <DrugList drugGroups={drugGroups} />
+        <DrugList />
       </div>
     </ResponsiveDrawer>
   );

@@ -1,14 +1,17 @@
 'use client';
 
-import { DrugGroups } from '@/types/drug';
+import { drugGroupsAtom } from '@/atoms/sideBar';
 import { List } from '@mui/material';
+import { useAtom } from 'jotai';
 import GroupCollapseList from './GroupCollapseList';
 
-type Props = {
-  drugGroups: DrugGroups;
-};
+export default function DrugList() {
+  const [drugGroups] = useAtom(drugGroupsAtom);
 
-export default function DrugList({ drugGroups }: Props) {
+  if (!drugGroups) {
+    return <div />;
+  }
+
   return (
     <List component="div" disablePadding>
       {Object.keys(drugGroups).map((group, index) => (

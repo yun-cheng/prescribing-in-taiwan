@@ -1,8 +1,9 @@
+import Hydrations from '@/components/common/Hydrations/Hydrations';
 import JotaiDevTools from '@/components/common/JotaiDevTools';
 import Listeners from '@/components/common/Listeners';
 import MainContainer from '@/components/common/MainContainer';
 import NavBar from '@/components/common/NavBar';
-import SideBarContainer from '@/components/common/SideBar/SideBarContainer';
+import SideBar from '@/components/common/SideBar/SideBar';
 import SearchPanel from '@/components/searchPanel/SearchPanel';
 import theme from '@/utils/muiThemeConfig';
 import { ThemeProvider } from '@mui/material';
@@ -38,21 +39,23 @@ export default function RootLayout({ children }: Props) {
       <body className={inter.className}>
         <JotaiProvider>
           <JotaiDevTools />
-          <AppRouterCacheProvider>
-            <ThemeProvider theme={theme}>
-              <Listeners />
-              <SearchPanel />
-              <NavBar />
-              <div className="min-h-screen bg-slate-50">
-                <main>
-                  <div className="flex">
-                    <SideBarContainer />
-                    <MainContainer>{children}</MainContainer>
-                  </div>
-                </main>
-              </div>
-            </ThemeProvider>
-          </AppRouterCacheProvider>
+          <Hydrations>
+            <AppRouterCacheProvider>
+              <ThemeProvider theme={theme}>
+                <Listeners />
+                <SearchPanel />
+                <NavBar />
+                <div className="min-h-screen bg-slate-50">
+                  <main>
+                    <div className="flex">
+                      <SideBar />
+                      <MainContainer>{children}</MainContainer>
+                    </div>
+                  </main>
+                </div>
+              </ThemeProvider>
+            </AppRouterCacheProvider>
+          </Hydrations>
         </JotaiProvider>
       </body>
     </html>

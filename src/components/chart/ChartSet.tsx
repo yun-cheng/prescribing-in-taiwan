@@ -1,27 +1,15 @@
 'use client';
 
-import {
-  chartSetDataAtom,
-  fullChartSetDataAtom,
-  maxValueAtom,
-} from '@/atoms/chart';
+import { chartSetDataAtom, maxValueAtom } from '@/atoms/chart';
 import Chart from '@/components/chart/Chart';
-import { FullChartSetDataType } from '@/types/chart';
 import { useAtom } from 'jotai';
-import { useHydrateAtoms } from 'jotai/utils';
 
-type Props = {
-  fullChartSetData: FullChartSetDataType;
-};
-
-export default function ChartSet({ fullChartSetData }: Props) {
-  useHydrateAtoms([[fullChartSetDataAtom, fullChartSetData]]);
-
+export default function ChartSet() {
   const [chartSetData] = useAtom(chartSetDataAtom);
   const [maxValue] = useAtom(maxValueAtom);
 
   return (
-    <div className="mb-6 flex flex-wrap @container">
+    <div className="mx-auto mb-6 flex max-w-screen-lg flex-wrap @container">
       {Object.keys(chartSetData).map((year) => (
         <div
           key={year}

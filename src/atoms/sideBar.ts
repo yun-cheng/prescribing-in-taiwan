@@ -1,4 +1,5 @@
 import { Drug, DrugGroups, DrugMap } from '@/types/drug';
+import drugMapToDrugGroups from '@/utils/drugMapToDrugGroups';
 import { atom } from 'jotai';
 import { atomWithDefault } from 'jotai/utils';
 import { atomWithToggle } from './common/atomWithToggle';
@@ -7,7 +8,13 @@ export const sideBarOpenAtom = atomWithToggle(false);
 
 export const drugMapAtom = atom<DrugMap | null>(null);
 
-export const drugGroupsAtom = atom<DrugGroups | null>(null);
+export const drugGroupsAtom = atom<DrugGroups | null>((get) => {
+  const drugMap = get(drugMapAtom);
+
+  if (!drugMap) return null;
+
+  return drugMapToDrugGroups(drugMap);
+});
 
 export const selectedDrugIdAtom = atom<string>('');
 

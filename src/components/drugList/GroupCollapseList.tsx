@@ -59,6 +59,7 @@ export default function GroupCollapseList({
       <ListSubheader
         className="bg-slate-50"
         sx={{ zIndex: index + 3 }}
+        component="div"
         color="inherit"
         disableGutters
       >
